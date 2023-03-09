@@ -15,21 +15,6 @@ getWeatherBtn.addEventListener("click", () => {
     const windSpeed = document.getElementById("wind-speed");
     const pressure = document.getElementById("pressure");
     const forecastList = document.getElementById("forecast-list");
-    // forecastList.innerHTML = ""; // clear previous forecast items
-    // const forecastItem = document.createElement("li");
-    // forecastItem.classList.add("forecast-item");
-    // const icon = document.createElement("img");
-    // icon.classList.add("forecast-icon");
-    // forecastItem.appendChild(icon);
-    // const dayOfWeek = document.createElement("div");
-    // dayOfWeek.classList.add("forecast-day-of-week");
-    // forecastItem.appendChild(dayOfWeek);
-    // const tempRange = document.createElement("div");
-    // tempRange.classList.add("forecast-temp-range");
-    // forecastItem.appendChild(tempRange);
-    // forecastList.appendChild(forecastItem);
-
-
     // construct the URL for fetching weather information
     const weatherUrl = `${ WEATHER_URL }?q=${ cityInput.value }&appid=${ API_KEY }`;
 
@@ -49,7 +34,7 @@ getWeatherBtn.addEventListener("click", () => {
             // get forecast information
             const lat = data.coord.lat;
             const lon = data.coord.lon;
-            const forecastUrl = `${ FORECAST_URL }?lat=${ lat }&lon=${ lon }&exclude=current,minutely,hourly,alerts&appid=${ API_KEY }`;
+            const forecastUrl = `${ FORECAST_URL }?lat=${ lat }&lon=${ lon }&exclude=current,minutely,hourly,alerts&appid=${ API_KEY }&units=metric`;
             return fetch(forecastUrl);
         })
         .then(response => response.json())
@@ -78,7 +63,8 @@ getWeatherBtn.addEventListener("click", () => {
                 // create and add temperature range element
                 const tempRange = document.createElement("div");
                 tempRange.classList.add("forecast-temp-range");
-                tempRange.textContent = `${ Math.round(forecast.temp.min) }°C / ${ Math.round(forecast.temp.max) }°C`;
+                // tempRange.textContent = `${ Math.round(forecast.temp.min) }°C / ${ Math.round(forecast.temp.max) }°C`;
+                tempRange.textContent = `${ forecast.temp.min.toFixed(1) }°C / ${ forecast.temp.max.toFixed(1) }°C`;
                 forecastItem.appendChild(tempRange);
 
                 // add forecast item to the forecast list
