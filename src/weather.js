@@ -4,6 +4,7 @@ const FORECAST_URL = "https://api.openweathermap.org/data/2.5/onecall";
 
 const getWeatherBtn = document.getElementById("get-weather-btn");
 getWeatherBtn.addEventListener("click", () => {
+    // get the elements of the document
     const cityInput = document.getElementById("city-input");
     const cityName = document.getElementById("city-name");
     const weatherIcon = document.getElementById("weather-icon");
@@ -13,6 +14,21 @@ getWeatherBtn.addEventListener("click", () => {
     const sunset = document.getElementById("sunset");
     const windSpeed = document.getElementById("wind-speed");
     const pressure = document.getElementById("pressure");
+    const forecastList = document.getElementById("forecast-list");
+    // forecastList.innerHTML = ""; // clear previous forecast items
+    // const forecastItem = document.createElement("li");
+    // forecastItem.classList.add("forecast-item");
+    // const icon = document.createElement("img");
+    // icon.classList.add("forecast-icon");
+    // forecastItem.appendChild(icon);
+    // const dayOfWeek = document.createElement("div");
+    // dayOfWeek.classList.add("forecast-day-of-week");
+    // forecastItem.appendChild(dayOfWeek);
+    // const tempRange = document.createElement("div");
+    // tempRange.classList.add("forecast-temp-range");
+    // forecastItem.appendChild(tempRange);
+    // forecastList.appendChild(forecastItem);
+
 
     // construct the URL for fetching weather information
     const weatherUrl = `${ WEATHER_URL }?q=${ cityInput.value }&appid=${ API_KEY }`;
@@ -42,29 +58,29 @@ getWeatherBtn.addEventListener("click", () => {
             forecastList.innerHTML = ""; // clear previous forecast items
             for (let i = 0; i < 7; i++) {
                 const forecast = forecastData.daily[ i ];
-                
+
                 // create forecast item element
                 const forecastItem = document.createElement("li");
                 forecastItem.classList.add("forecast-item");
-                
+
                 // create and add icon element
                 const icon = document.createElement("img");
                 icon.classList.add("forecast-icon");
                 icon.src = `https://api.openweathermap.org/img/w/${ forecast.weather[ 0 ].icon }.png`;
                 forecastItem.appendChild(icon);
-                
+
                 // create and add day of week element
                 const dayOfWeek = document.createElement("div");
                 dayOfWeek.classList.add("forecast-day-of-week");
                 dayOfWeek.textContent = new Date(forecast.dt * 1000).toLocaleDateString(undefined, { weekday: 'short' });
                 forecastItem.appendChild(dayOfWeek);
-                
+
                 // create and add temperature range element
                 const tempRange = document.createElement("div");
                 tempRange.classList.add("forecast-temp-range");
                 tempRange.textContent = `${ Math.round(forecast.temp.min) }°C / ${ Math.round(forecast.temp.max) }°C`;
                 forecastItem.appendChild(tempRange);
-                
+
                 // add forecast item to the forecast list
                 forecastList.appendChild(forecastItem);
             }
