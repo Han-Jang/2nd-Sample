@@ -76,3 +76,9 @@ getWeatherBtn.addEventListener("click", () => {
             alert("An error occurred while fetching weather information.");
         });
 })
+
+//make function to display clothes
+//taking in the weather code to determine what to display
+function displayClothes(weatherCode) {
+    
+}
