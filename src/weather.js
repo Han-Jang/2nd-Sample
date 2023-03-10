@@ -31,7 +31,7 @@ getWeatherBtn.addEventListener("click", () => {
             condition.textContent = data.weather[ 0 ].main;
             details.textContent = data.weather[ 0 ].description;
             weatherCode = data.weather[0].id;
-            displayClothes(weatherCode);//display clothes based on weather code
+            // displayClothes(weatherCode);//display clothes based on weather code
             sunrise.textContent = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
             sunset.textContent = new Date(data.sys.sunset * 1000).toLocaleTimeString();
             windSpeed.textContent = data.wind.speed;
@@ -98,10 +98,10 @@ function displayClothes(weatherCode) {
         case 230:
         case 231:
         case 232:
-            document.getElementById("rain").style.display = "block";
-            document.getElementById("snow").style.display = "none";
-            document.getElementById("sunny").style.display = "none";
-            document.getElementById("cloudy").style.display = "none";
+            // document.getElementById("rain").style.display = "block";
+            // document.getElementById("snow").style.display = "none";
+            // document.getElementById("sunny").style.display = "none";
+            // document.getElementById("cloudy").style.display = "none";
             break;
         case 300:
         case 301:
@@ -112,10 +112,10 @@ function displayClothes(weatherCode) {
         case 313:
         case 314:
         case 321:
-            document.getElementById("rain").style.display = "block";
-            document.getElementById("snow").style.display = "none";
-            document.getElementById("sunny").style.display = "none";
-            document.getElementById("cloudy").style.display = "none";
+            // document.getElementById("rain").style.display = "block";
+            // document.getElementById("snow").style.display = "none";
+            // document.getElementById("sunny").style.display = "none";
+            // document.getElementById("cloudy").style.display = "none";
             break;
         case 500:
         case 501:
@@ -185,3 +185,15 @@ function displayClothes(weatherCode) {
             break;
     }
 }
+function checkInput(value) {
+    if (value === "other") {
+      var city = prompt("Please enter the name of your city, it will then appear in the list.");
+      if (city != null) {
+        var option = document.createElement("option");
+        option.text = city;
+        option.value = city;
+        var select = document.getElementById("city");
+        select.add(option);
+      }
+    }
+  }

@@ -11,8 +11,18 @@
     </header>
     <main>
       <div class="input-container">
-        <label for="city-input">Enter City:</label>
-        <input type="text" id="city-input" placeholder="e.g. London">
+        <!-- <label for="city-input">Enter City:</label> -->
+        <label for="city-input">Select a city:</label>
+<select id="city-name" name="city" onchange="checkInput(this.value)">
+  <option value="">--Please choose a city--</option>
+  <option value="New York, USA">New York</option>
+  <option value="Paris, France">Paris</option>
+  <option value="Sydney, Australia">Sydney</option>
+  <option value="Tokyo, Japan">Tokyo</option>
+  <option value="Cairo, Egypt">Cairo</option>
+  <option value="other">Other (please specify)</option>
+</select>
+        <!-- <input type="text" id="city-input" placeholder="Halifax" > -->
         <button id="get-weather-btn">Get Weather</button>
       </div>
       <div class="weather-info-container">
